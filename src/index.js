@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './RegistrationForm.jsx';
 import registerServiceWorker from './registerServiceWorker';
 import './assets/css/core.css';
 import './assets/css/main.css';
+import RegisterForm from "./components/RegisterForm";
 
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<RegisterForm />, document.getElementById('root'));
 registerServiceWorker();
