@@ -1,24 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.173fe3a2.css",
-    "main.js": "/static/js/main.6977f35c.js",
+    "main.css": "/static/css/main.caa22a11.css",
+    "main.js": "/static/js/main.c3829b79.js",
     "static/media/Ubuntu-Light.ttf": "/static/media/Ubuntu-Light.0dd2d5986e2731a16ee7.ttf",
     "static/media/Ubuntu-Italic.ttf": "/static/media/Ubuntu-Italic.fbb3310412795b02afc4.ttf",
     "static/media/Ubuntu-Regular.ttf": "/static/media/Ubuntu-Regular.1cbb1b79a23478cc89ad.ttf",
     "static/media/Ubuntu-Medium.ttf": "/static/media/Ubuntu-Medium.e37c5546eb1a6efc4818.ttf",
     "static/media/Ubuntu-Bold.ttf": "/static/media/Ubuntu-Bold.fec2d0f1431a6114a6ce.ttf",
-    "static/media/Roboto-Italic.ttf": "/static/media/Roboto-Italic.beb7fe13e61b9e683c37.ttf",
-    "static/media/Roboto-Medium.ttf": "/static/media/Roboto-Medium.7429a63c09f79a1760b0.ttf",
-    "static/media/Roboto-Regular.ttf": "/static/media/Roboto-Regular.a8d6ac03c7b96b7acb62.ttf",
-    "static/media/Roboto-Bold.ttf": "/static/media/Roboto-Bold.75371f53f06181df75f1.ttf",
-    "static/media/Roboto-Light.ttf": "/static/media/Roboto-Light.8be2d1487420548b3b8d.ttf",
-    "static/media/ubud-fest.ttf": "/static/media/ubud-fest.7e0e20bdfa978561ead9.ttf",
     "index.html": "/index.html",
-    "main.173fe3a2.css.map": "/static/css/main.173fe3a2.css.map",
-    "main.6977f35c.js.map": "/static/js/main.6977f35c.js.map"
+    "main.caa22a11.css.map": "/static/css/main.caa22a11.css.map",
+    "main.c3829b79.js.map": "/static/js/main.c3829b79.js.map"
   },
   "entrypoints": [
-    "static/css/main.173fe3a2.css",
-    "static/js/main.6977f35c.js"
+    "static/css/main.caa22a11.css",
+    "static/js/main.c3829b79.js"
   ]
 }
