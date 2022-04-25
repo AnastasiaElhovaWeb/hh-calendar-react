@@ -32,7 +32,7 @@ const RegisterForm: FC = () => {
 
   return (
     <main className="form-signin">
-      <Form onSubmit={handleSubmit(onSubmit)} onReset={reset}>
+      <Form className="w-100" onSubmit={handleSubmit(onSubmit)} onReset={reset}>
         <h1>Регистрация</h1>
         <Form.Group className="mb-3 text-start" controlId="formBasicEmail">
           <Form.Label>Email</Form.Label>
