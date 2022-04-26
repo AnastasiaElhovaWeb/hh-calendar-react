@@ -24,8 +24,7 @@ const LoginForm: FC = () => {
     <main className="form-signin">
       <Form onSubmit={handleSubmit(onSubmit)}>
         <h1>Вход</h1>
-        <Form.Group className="mb-3 text-start" controlId="formBasicEmail">
-          <Form.Label>Email</Form.Label>
+        <Form.Group className="mb-3 text-start form-floating" controlId="formBasicEmail">
           <Controller name='email' control={control}
                       render={({field: {onChange, onBlur, value, ref}}) => (
                         <Form.Control onChange={onChange}
@@ -46,11 +45,11 @@ const LoginForm: FC = () => {
                         }
                       }}
           />
+          <Form.Label>Email</Form.Label>
           <Form.Text className="text-danger">{errors?.email?.message}</Form.Text>
         </Form.Group>
 
-        <Form.Group className="mb-3 text-start" controlId="formBasicPassword">
-          <Form.Label>Пароль</Form.Label>
+        <Form.Group className="mb-3 text-start form-floating" controlId="formBasicPassword">
           <Controller name='password' control={control}
                       render={({field: {onChange, onBlur, value, ref}}) => (
                         <Form.Control onChange={onChange}
@@ -67,13 +66,14 @@ const LoginForm: FC = () => {
                         }
                       }}
           />
+          <Form.Label>Пароль</Form.Label>
           <Form.Text className="text-danger">
             {errors?.password && (errors?.password?.message || 'Ошибка')}
           </Form.Text>
         </Form.Group>
 
         <Button
-          variant="primary"
+          variant="primary w-100 btn-lg"
           type="submit"
           disabled={!isValid}
         >

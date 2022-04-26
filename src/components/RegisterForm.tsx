@@ -1,8 +1,10 @@
-import React, {FC} from "react";
+import React, {FC, useRef, useState} from "react";
 import {useForm, Controller} from 'react-hook-form';
 import {Button, Form} from "react-bootstrap";
+import submitForm from "../models/Forms";
 
 const RegisterForm: FC = () => {
+
   const {
     handleSubmit,
     reset,
@@ -10,32 +12,27 @@ const RegisterForm: FC = () => {
     control,
     formState: {
       errors,
-      isValid
+      isValid,
     },
   } = useForm({
     mode: 'onBlur'
   });
 
+  const [errorSubmit, setErrorSubmit] = useState('');
+
   const onSubmit = (data: object) => {
-    let xhr = new XMLHttpRequest();
-    let url = "http://localhost:8085/registration";
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === 4 && xhr.status === 200) {
-        console.log(this.responseText);
-      }
-    };
-    let dataJson = JSON.stringify(data);
-    xhr.send(dataJson);
+    let result = submitForm(data);
+    if (result !== undefined) {
+      setErrorSubmit(String(result));
+    }
+    console.log(result);
   };
 
   return (
     <main className="form-signin">
       <Form className="w-100" onSubmit={handleSubmit(onSubmit)} onReset={reset}>
         <h1>Регистрация</h1>
-        <Form.Group className="mb-3 text-start" controlId="formBasicEmail">
-          <Form.Label>Email</Form.Label>
+        <Form.Group className="mb-3 text-start form-floating" controlId="formBasicEmail">
           <Controller name='email' control={control}
                       render={({field: {onChange, onBlur, value, ref}}) => (
                         <Form.Control onChange={onChange}
@@ -56,11 +53,11 @@ const RegisterForm: FC = () => {
                         }
                       }}
           />
+          <Form.Label>Email</Form.Label>
           <Form.Control.Feedback type="invalid">{errors?.email?.message}</Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group className="mb-3 text-start" controlId="formBasicPassword">
-          <Form.Label>Пароль</Form.Label>
+        <Form.Group className="mb-3 text-start form-floating" controlId="formBasicPassword">
           <Controller name='password' control={control}
                       render={({field: {onChange, onBlur, value, ref}}) => (
                         <Form.Control onChange={onChange}
@@ -85,11 +82,11 @@ const RegisterForm: FC = () => {
                         }
                       }}
           />
+          <Form.Label>Пароль</Form.Label>
           <Form.Control.Feedback type="invalid">{errors?.password?.message}</Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group className="mb-3 text-start" controlId="formBasicConfirmPassword">
-          <Form.Label>Подтвердите пароль</Form.Label>
+        <Form.Group className="mb-3 text-start form-floating" controlId="formBasicConfirmPassword">
           <Controller name='confirmPassword' control={control}
                       render={({field: {onChange, onBlur, value, ref}}) => (
                         <Form.Control onChange={onChange}
@@ -107,16 +104,17 @@ const RegisterForm: FC = () => {
                         validate: value => value === getValues('password') || "Пароли не совпадают"
                       }}
           />
+          <Form.Label>Подтвердите пароль</Form.Label>
           <Form.Control.Feedback type="invalid">{errors?.confirmPassword?.message}</Form.Control.Feedback>
         </Form.Group>
-
         <Button
-          variant="primary"
+          variant="primary w-100 btn-lg"
           type="submit"
           disabled={!isValid}
         >
           Зарегистрироваться
         </Button>
+        <Form.Group className="mt-3 text-danger">{errorSubmit}</Form.Group>
       </Form>
     </main>
   );
