@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+import React, {FC, useState} from "react";
 import {Controller, useForm} from 'react-hook-form';
 import {Button, Form} from "react-bootstrap";
 
@@ -16,9 +16,23 @@ const LoginForm: FC = () => {
     mode: 'onBlur'
   });
 
+  const [errorSubmit, setErrorSubmit] = useState('');
+  const url = `http://localhost:8085/security/avtorisation`;
   const onSubmit = (data: object) => {
-    console.log(data)
-  }
+    let options = {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    fetch(url, options)
+        .then(res => res.text())
+        .then(res => {
+          setErrorSubmit(res);
+          console.log(res);
+        });
+  };
 
   return (
     <main className="form-signin">
@@ -27,12 +41,12 @@ const LoginForm: FC = () => {
         <Form.Group className="mb-3 text-start form-floating" controlId="formBasicEmail">
           <Controller name='email' control={control}
                       render={({field: {onChange, onBlur, value, ref}}) => (
-                        <Form.Control onChange={onChange}
-                                      onBlur={onBlur}
-                                      value={value} ref={ref}
-                                      type="email"
-                                      isInvalid={errors.email}
-                                      placeholder="Введите email" />
+                          <Form.Control onChange={onChange}
+                                        onBlur={onBlur}
+                                        value={value} ref={ref}
+                                        type="email"
+                                        isInvalid={errors.email}
+                                        placeholder="Введите email"/>
                       )}
                       rules={{
                         required: {
@@ -52,12 +66,12 @@ const LoginForm: FC = () => {
         <Form.Group className="mb-3 text-start form-floating" controlId="formBasicPassword">
           <Controller name='password' control={control}
                       render={({field: {onChange, onBlur, value, ref}}) => (
-                        <Form.Control onChange={onChange}
-                                      onBlur={onBlur}
-                                      value={value} ref={ref}
-                                      type="password"
-                                      isInvalid={errors.password}
-                                      placeholder="Введите пароль" />
+                          <Form.Control onChange={onChange}
+                                        onBlur={onBlur}
+                                        value={value} ref={ref}
+                                        type="password"
+                                        isInvalid={errors.password}
+                                        placeholder="Введите пароль"/>
                       )}
                       rules={{
                         required: {
@@ -73,12 +87,13 @@ const LoginForm: FC = () => {
         </Form.Group>
 
         <Button
-          variant="primary w-100 btn-lg"
-          type="submit"
-          disabled={!isValid}
+            variant="primary w-100 btn-lg"
+            type="submit"
+            disabled={!isValid}
         >
           Войти
         </Button>
+        <Form.Group className="mt-3 text-danger">{errorSubmit}</Form.Group>
       </Form>
     </main>
   );
