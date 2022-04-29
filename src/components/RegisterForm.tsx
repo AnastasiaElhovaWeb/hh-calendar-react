@@ -1,7 +1,6 @@
 import React, {FC, useRef, useState} from "react";
 import {useForm, Controller} from 'react-hook-form';
 import {Button, Form} from "react-bootstrap";
-import submitForm from "../models/Forms";
 
 const RegisterForm: FC = () => {
 
@@ -19,13 +18,21 @@ const RegisterForm: FC = () => {
   });
 
   const [errorSubmit, setErrorSubmit] = useState('');
-
+  const url = `http://localhost:8085/security/registration`;
   const onSubmit = (data: object) => {
-    let result = submitForm(data);
-    if (result !== undefined) {
-      setErrorSubmit(String(result));
-    }
-    console.log(result);
+  	let options = {
+	    method: 'POST',
+	    body: JSON.stringify(data),
+	    headers: {
+		'Content-Type': 'application/json'
+	    }
+	};
+	fetch(url, options)
+	    .then(res => res.text())
+	    .then(res => {
+	    	setErrorSubmit(res);
+	    	console.log(res);
+		});
   };
 
   return (

@@ -1,5 +1,5 @@
 export default function submitForm(data: object) {
-    let xhr = new XMLHttpRequest();
+    /*let xhr = new XMLHttpRequest();
     let url = "http://localhost:8085/registration";
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/json");
@@ -10,5 +10,5 @@ export default function submitForm(data: object) {
         return false;
     };
     let dataJson = JSON.stringify(data);
-    xhr.send(dataJson);
+    xhr.send(dataJson);*/
 };
